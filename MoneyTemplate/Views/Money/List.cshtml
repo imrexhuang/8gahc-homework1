@@ -1,5 +1,4 @@
-﻿@model IEnumerable<MoneyTemplate.Models.ViewModels.SpendingTrackerViewModel>
-
+﻿
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_LayoutMoney.cshtml";
@@ -52,33 +51,11 @@
         </form>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-bordered table-hover">
-                <tr>
-                    <th>#</th>
-                    <th>@Html.DisplayNameFor(model => model.TYPE)</th>
-                    <th>@Html.DisplayNameFor(model => model.DATE)</th>
-                    <th>@Html.DisplayNameFor(model => model.AMOUMT)</th>
-                </tr>
-
-                @{int i = 1;}
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@i</td>
-                        <td>@Html.DisplayFor(modelItem => item.TYPE)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DATE)</td>
-                        <td>@Html.DisplayFor(modelItem => item.AMOUMT)</td>
-                    </tr>
-                    i++;
-                }
-
-            </table>
-        </div>
-    </div>
 
 </div>
 
+<div class="container body-content">
+    @Html.Partial("_ListPartialPage")
+</div>
 
-@RenderPage("~/Views/Shared/_Footer.cshtml")
+    @RenderPage("~/Views/Shared/_Footer.cshtml")

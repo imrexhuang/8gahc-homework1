@@ -203,6 +203,7 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Shared\_LayoutPageMVC.cshtml" />
     <Content Include="Views\Shared\_LayoutRAZOR.cshtml" />
+    <Content Include="Views\Money\_ListPartialPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
