@@ -18,7 +18,7 @@ namespace MoneyTemplate.Models.ViewModels
         public DateTime DATE { get; set; }
 
         [DisplayName("金額")]
-        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = false)]
         public int AMOUMT { get; set; }
 
         [DisplayName("備註")]
