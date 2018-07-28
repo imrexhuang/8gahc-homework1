@@ -6,8 +6,11 @@ namespace MoneyTemplate.Models.ViewModels
 {
     public class SpendingTrackerViewModel
     {
+        [Key]
+        public Guid ID { get; set; }
+
         [DisplayName("類別")]
-        public TypeEnum TYPE { get; set; }
+        public int TYPE { get; set; }
 
         [DisplayName("日期")]
         [DataType(DataType.Date)]
@@ -22,9 +25,12 @@ namespace MoneyTemplate.Models.ViewModels
         public String REMARK { get; set; }
     }
 
-    public enum TypeEnum
-    {
-        收入 = 'D',
-        支出 = 'C'
-    }
+    //public enum TypeEnum
+    //{
+    //    [Display(Name = "收入")]
+    //    收入 = 'D',
+
+    //    [Display(Name = "支出")]
+    //    支出 = 'C'
+    //}
 }

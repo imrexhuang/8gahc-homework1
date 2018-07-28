@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MoneyTemplate.Models.ViewModels.SpendingTrackerViewModel>
 
+@using MoneyTemplate.Helper
+
 @{
     Layout = null;
 }
@@ -12,6 +14,7 @@
                 <th>@Html.DisplayNameFor(model => model.TYPE)</th>
                 <th>@Html.DisplayNameFor(model => model.DATE)</th>
                 <th>@Html.DisplayNameFor(model => model.AMOUMT)</th>
+                <th></th>
             </tr>
 
             @{int i = 1;}
@@ -19,9 +22,14 @@
             {
                 <tr>
                     <td>@i</td>
-                    <td>@Html.DisplayFor(modelItem => item.TYPE)</td>
+                    <td>@Html.DisplayCategory( item.TYPE)</td>
                     <td>@Html.DisplayFor(modelItem => item.DATE)</td>
                     <td>@Html.DisplayFor(modelItem => item.AMOUMT)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
                 </tr>
                 i++;
             }
