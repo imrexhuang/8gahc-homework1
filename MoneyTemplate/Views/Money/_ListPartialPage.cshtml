@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MoneyTemplate.Models.ViewModels.SpendingTrackerViewModel>
+﻿@model IPagedList<MoneyTemplate.Models.ViewModels.SpendingTrackerViewModel>
 
 @using MoneyTemplate.Helper
 
@@ -11,9 +11,9 @@
         <table class="table table-bordered table-hover">
             <tr>
                 <th>#</th>
-                <th>@Html.DisplayNameFor(model => model.TYPE)</th>
-                <th>@Html.DisplayNameFor(model => model.DATE)</th>
-                <th>@Html.DisplayNameFor(model => model.AMOUMT)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TYPE)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DATE)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().AMOUMT)</th>
                 <th></th>
             </tr>
 
@@ -22,7 +22,7 @@
             {
                 <tr>
                     <td>@i</td>
-                    <td>@Html.DisplayCategory( item.TYPE)</td>
+                    <td>@Html.DisplayCategory(item.TYPE)</td>
                     <td>@Html.DisplayFor(modelItem => item.DATE)</td>
                     <td>@Html.DisplayFor(modelItem => item.AMOUMT)</td>
                     <td>
@@ -35,5 +35,8 @@
             }
 
         </table>
+
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", "Money", new { page }))
+
     </div>
 </div>

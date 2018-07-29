@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MoneyTemplate.Models.ViewModels;
 using MoneyTemplate.Repository;
 using MoneyTemplate.Service;
+using X.PagedList;
 
 namespace MoneyTemplate.Controllers
 {
@@ -14,6 +15,9 @@ namespace MoneyTemplate.Controllers
     {
         private readonly AccountbookService _accountbookService;
         private readonly UnitOfWork _unitOfWork;
+
+        // 分頁後每頁顯示的筆數
+        private const int defaultPageSize = 20;
 
         public MoneyController()
         {
@@ -124,9 +128,12 @@ namespace MoneyTemplate.Controllers
         }
 
         // GET: Money
-        public ActionResult List()
+        public ActionResult List(int page = 1)
         {
-            return View(_accountbookService.Lookup());
+            int currentPageIndex = page < 1 ? 1 : page;
+            TempData["CurrentPage"] = currentPageIndex;
+
+            return View(_accountbookService.Lookup().OrderBy(x => x.ID).ToPagedList(currentPageIndex, defaultPageSize) );
         }
 
         [HttpPost, ActionName("Delete")]
