@@ -53,18 +53,20 @@ namespace MoneyTemplate.Controllers
 
         // POST: Money/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,TYPE,DATE,AMOUMT,REMARK")]
+                                 SpendingTrackerViewModel accountbook)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                accountbook.ID = Guid.NewGuid();
+                _accountbookService.Add(accountbook);
+   
+                _unitOfWork.Commit();
+                return RedirectToAction("List");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(accountbook);
         }
 
         // GET: Money/Edit/5
@@ -95,32 +97,29 @@ namespace MoneyTemplate.Controllers
                 _accountbookService.Edit(accountbook.ID, accountbook);
                 _unitOfWork.Commit();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
 
             return View(accountbook);
         }
 
-        // GET: Money/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
         // POST: Money/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        //[HttpPost]
+        public ActionResult Delete(Guid? id)
         {
-            try
+            if (id == null)
             {
-                // TODO: Add delete logic here
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var accountbook = _accountbookService.GetSingle(id.Value);
+            if (accountbook == null)
             {
-                return View();
+                return HttpNotFound();
             }
+
+            return View(accountbook);
         }
 
         // GET: Money
@@ -128,5 +127,16 @@ namespace MoneyTemplate.Controllers
         {
             return View(_accountbookService.Lookup());
         }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id)
+        {
+            _accountbookService.Delete(id);
+            _unitOfWork.Commit();
+
+            return RedirectToAction("List");
+        }
+
     }
 }

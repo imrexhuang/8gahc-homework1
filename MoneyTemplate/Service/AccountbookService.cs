@@ -58,5 +58,24 @@ namespace MoneyTemplate.Service
             }
         }
 
+        public void Add(SpendingTrackerViewModel accountbook)
+        {
+            _accountbookRepository.Create(new AccountBook
+            {
+                Id = accountbook.ID,
+                Categoryyy = accountbook.TYPE,
+                Amounttt = accountbook.AMOUMT,
+                Dateee = accountbook.DATE,
+                Remarkkk = accountbook.REMARK,
+            });
+
+        }
+
+        public void Delete(Guid id)
+        {
+            _accountbookRepository.Remove(_accountbookRepository.GetSingle(d => d.Id == id));
+        }
+
+
     }
 }
