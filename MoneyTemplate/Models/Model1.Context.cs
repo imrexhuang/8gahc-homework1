@@ -26,7 +26,9 @@ namespace MoneyTemplate.Models
         }
     
         public virtual DbSet<AccountBook> AccountBook { get; set; }
-
-        public System.Data.Entity.DbSet<MoneyTemplate.Models.ViewModels.SpendingTrackerViewModel> SpendingTrackerViewModels { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

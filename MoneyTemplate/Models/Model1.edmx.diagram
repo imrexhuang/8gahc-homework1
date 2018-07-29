@@ -6,6 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="55cbabd83b2e447f99d4f837d6f549f5" Name="Diagram1">
         <EntityTypeShape EntityType="SkillTreeHomeworkModel.AccountBook" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AspNetRoles" Width="1.5" PointX="3.375" PointY="2.5" />
+        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="1" />
+        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="3.75" />
+        <EntityTypeShape EntityType="SkillTreeHomeworkModel.AspNetUsers" Width="1.5" PointX="5.625" PointY="1.375" />
+        <AssociationConnector Association="SkillTreeHomeworkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SkillTreeHomeworkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SkillTreeHomeworkModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
