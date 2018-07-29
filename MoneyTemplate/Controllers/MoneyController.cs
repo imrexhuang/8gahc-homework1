@@ -24,7 +24,8 @@ namespace MoneyTemplate.Controllers
         // GET: Money
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
+            //return View();
         }
 
         // GET: Money/Details/5
